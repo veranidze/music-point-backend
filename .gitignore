@@ -1,1 +1,8 @@
-service-account-credentials.json
+# Python
+__pycache__/
+*.pyc
+.venv
+venv/
+
+# Наше правило для безопасности
+backend/service-account-credentials.json
