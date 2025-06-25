@@ -64,10 +64,12 @@ def get_events(
         raise HTTPException(status_code=500, detail="Ошибка конфигурации сервера: не удалось подключиться к сервису Google Calendar.")
 
     time_min = datetime(year, month, 1).isoformat() + 'Z'
-    next_month_year = year + (month // 12)
-    next_month = month % 12 + 1
-    time_max = datetime(next_month_year, next_month, 1).isoformat() + 'Z'
-
+   if month == 12:
+    next_month_year = year + 1
+    next_month = 1
+else:
+    next_month_year = year
+    next_month = month + 1
     try:
         events_result = service.events().list(
             calendarId=calendar_id,
