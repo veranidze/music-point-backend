@@ -18,7 +18,7 @@ app = FastAPI()
 # --- Настройка CORS ---
 # Это КРАЙНЕ ВАЖНО для связи фронтенда на Vercel и бэкенда на Render.
 # В origins можно будет позже вставить URL вашего сайта для большей безопасности.
-origins = ["*"]
+origins = ["https://music-point-frontend1.vercel.app"]
 
 app.add_middleware(
     CORSMiddleware,
@@ -50,7 +50,7 @@ def get_calendar_service():
         return None
 
 # --- API Эндпоинт (точка входа) ---
-@app.get("/api/events")
+@app.get("https://music-point-api.onrender.com/")
 def get_events(
     calendar_id: str = Query(..., description="ID Google Календаря для запроса"),
     year: int = Query(..., description="Год"),
